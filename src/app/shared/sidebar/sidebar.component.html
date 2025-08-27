@@ -1,0 +1,47 @@
+<nav class="sidebar" [class.expanded]="isSidebarExpanded">
+  <ul>
+    <!-- Notes -->
+    <li
+      routerLink="/dashboard"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      title="Notes">
+      <span class="material-icons">lightbulb</span>
+      <span class="label">Notes</span>
+    </li>
+
+    <!-- Reminders (placeholder, route not implemented) -->
+    <li
+      title="Reminders">
+      <span class="material-icons">notifications</span>
+      <span class="label">Reminders</span>
+    </li>
+
+    <!-- Edit Labels (placeholder, route not implemented) -->
+    <li
+      title="Edit Labels">
+      <span class="material-icons">edit</span>
+      <span class="label">Edit labels</span>
+    </li>
+
+    <!-- Archive -->
+    <li
+      routerLink="/dashboard/archive"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      title="Archive">
+      <span class="material-icons">archive</span>
+      <span class="label">Archive</span>
+    </li>
+
+    <!-- Trash (optional) -->
+    <li
+      routerLink="/dashboard/trash"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      title="Trash">
+      <span class="material-icons">delete</span>
+      <span class="label">Trash</span>
+    </li>
+  </ul>
+</nav>

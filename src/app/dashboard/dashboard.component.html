@@ -1,0 +1,34 @@
+<!-- dashboard.component.html -->
+
+<!-- Top Header -->
+<!-- Top Header -->
+<app-header
+  (menuToggle)="sidebarExpanded = $event"
+  (viewModeChanged)="onViewModeChanged($event)"
+  (searchTermChanged)="onSearchTermChanged($event)">
+</app-header>
+
+<!-- Sidebar -->
+<app-sidebar [isExpanded]="sidebarExpanded"></app-sidebar>
+
+<!-- Main Dashboard Content -->
+<div class="main-content">
+
+  <!-- Note Input Box -->
+  <app-note-input (noteCreated)="loadNotes()" ></app-note-input>
+
+  <!-- Notes Display Grid/List -->
+  <div class="notes-container" [ngClass]="layoutType">
+    <app-note-card
+      *ngFor="let note of notes | searchNotes:searchTerm"
+      [note]="note"
+      [layout]="layoutType"
+      (noteAction)="handleNoteAction($event)">
+    </app-note-card>
+
+
+
+
+  </div>
+
+</div>

@@ -1,0 +1,24 @@
+<!-- Reuse Header -->
+<app-header
+  (viewModeChanged)="onViewModeChanged($event)"
+  (menuToggle)="sidebarExpanded = $event"
+  (searchTermChanged)="onSearchTermChanged($event)">
+</app-header>
+
+<!-- Sidebar -->
+<app-sidebar [isExpanded]="sidebarExpanded"></app-sidebar>
+
+<!-- Main Archive Content -->
+<div class="main-content">
+<!--  <h2 class="page-title">Archived Notes</h2>-->
+
+  <div class="notes-container" [ngClass]="layoutType">
+    <app-note-card
+      *ngFor="let note of notes | searchNotes:searchTerm"
+      [note]="note"
+      [layout]="layoutType"
+      [isInArchive]="true"
+      (noteAction)="handleNoteAction($event)">
+    </app-note-card>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div
+  class="note-input"
+  [class.expanded]="isExpanded"
+  [ngStyle]="{ 'background-color': selectedColor }"
+  (click)="expand()"
+>
+  <div class="top-row">
+    <input
+      *ngIf="isExpanded"
+      type="text"
+      placeholder="Title"
+      [(ngModel)]="title"
+      class="title-input"
+      [ngClass]="selectedTextFormat"
+    />
+
+    <textarea
+      placeholder="Take a note..."
+      [(ngModel)]="content"
+      (focus)="expand()"
+      (input)="autoGrowTextarea($event)"
+      rows="1"
+      [ngClass]="selectedTextFormat"
+    ></textarea>
+
+    <span *ngIf="isExpanded" class="material-icons pin-icon">push_pin</span>
+  </div>
+
+  <div *ngIf="isExpanded" class="toolbar">
+    <!-- Color palette -->
+    <div class="color-picker-wrapper" (click)="toggleColorPalette($event)">
+      <span class="material-icons" title="Background color">palette</span>
+      <div class="color-palette" *ngIf="showColorPalette">
+        <div
+          class="color-swatch"
+          *ngFor="let color of colors"
+          [ngStyle]="{ 'background-color': color }"
+          (click)="setColor(color, $event)"
+        ></div>
+      </div>
+    </div>
+
+    <!-- Text formatting -->
+    <div class="text-format-wrapper" (click)="toggleTextFormatDropdown($event)">
+      <span class="material-icons" title="Text format">format_size</span>
+      <div class="format-dropdown" *ngIf="showTextFormatDropdown">
+        <div
+          *ngFor="let format of textFormats"
+          (click)="selectTextFormat(format.value, $event)"
+          [class.selected]="format.value === selectedTextFormat"
+        >
+          {{ format.label }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Action icons -->
+    <span class="material-icons" title="Archive">archive</span>
+    <span class="material-icons" title="More">more_vert</span>
+    <span class="material-icons" title="Undo">undo</span>
+    <span class="material-icons" title="Redo">redo</span>
+    <span class="material-icons close-btn" (click)="close()" title="Close">close</span>
+  </div>
+</div>
